@@ -7,6 +7,9 @@ RUN apt-get update && apt-get install -y \
 
 ENV RUSTUP_HOME=/tmp/.rustup
 ENV CARGO_HOME=/tmp/.cargo
+ENV CARGO_REGISTRY_CACHE_DIR=/tmp/.cargo/registry/cache
+ENV CARGO_REGISTRY_INDEX_DIR=/tmp/.cargo/registry/index
+
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --no-modify-path
 ENV PATH="/tmp/.cargo/bin:${PATH}"
 
