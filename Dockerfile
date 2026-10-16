@@ -5,9 +5,10 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+ENV RUSTUP_HOME=/tmp/.rustup
 ENV CARGO_HOME=/tmp/.cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/tmp/.cargo/bin:${PATH}"
 
 WORKDIR /app
 COPY requirements.txt .
